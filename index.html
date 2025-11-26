@@ -25,7 +25,6 @@
       background: #000;
     }
 
-    /* BACKGROUND FOTO PENUH */
     body::before {
       content: "";
       position: fixed;
@@ -36,8 +35,6 @@
       background-repeat: no-repeat;
       z-index: -1;
     }
-
-    /* ====== HALAMAN PEMBUKA ====== */
 
     .intro-screen {
       min-height: 100vh;
@@ -162,8 +159,6 @@
     .intro-footer strong {
       color: #e5e7eb;
     }
-
-    /* ====== HALAMAN UTAMA (PROGRAM) ====== */
 
     .wrapper {
       max-width: 1100px;
@@ -745,7 +740,6 @@
       margin-bottom: 0.18rem;
     }
 
-    /* Sembunyikan dulu app utama */
     #main-app {
       display: none;
     }
@@ -753,7 +747,7 @@
 </head>
 
 <body>
-  <!-- ========== HALAMAN PEMBUKA ========== -->
+  <!-- INTRO -->
   <section class="intro-screen" id="intro-screen">
     <div class="intro-card">
       <div class="intro-tagline">
@@ -791,7 +785,7 @@
     </div>
   </section>
 
-  <!-- ========== HALAMAN UTAMA PROGRAM ========== -->
+  <!-- MAIN -->
   <div class="wrapper" id="main-app">
     <header>
       <div class="tagline">
@@ -805,7 +799,6 @@
       </p>
     </header>
 
-    <!-- HERO + ALARM -->
     <section class="hero-card">
       <div class="hero-text">
         <h2>Alarm Kesadaran • Tampilan Utama</h2>
@@ -862,7 +855,6 @@
       </div>
     </section>
 
-    <!-- MAIN CONTENT -->
     <section class="content-grid" id="content-grid">
       <article class="panel" id="panel-dynamic">
         <div class="panel-placeholder" id="panel-placeholder">
@@ -875,7 +867,7 @@
           </div>
         </div>
 
-        <!-- 🔴 RED PANEL – SELF-AWARENESS (GOLEMAN) -->
+        <!-- RED -->
         <div id="panel-red" class="panel red" style="display:none;">
           <div class="panel-title">
             <div class="panel-title-main">🔴 Autopilot Mode – Self-Awareness</div>
@@ -918,7 +910,7 @@
           <button class="btn-back" data-back>← Kembali ke Alarm Utama</button>
         </div>
 
-        <!-- 🟡 YELLOW PANEL – REGULASI DIRI & KEDISIPLINAN (ZIMMERMAN) -->
+        <!-- YELLOW -->
         <div id="panel-yellow" class="panel yellow" style="display:none;">
           <div class="panel-title">
             <div class="panel-title-main">🟡 Awareness Wake-Up – Regulasi Diri & Kedisiplinan</div>
@@ -960,7 +952,7 @@
           <button class="btn-back" data-back>← Kembali ke Alarm Utama</button>
         </div>
 
-        <!-- 🟢 GREEN PANEL – TEORI PEMBELAJARAN REFLEKTIF (KOLB) -->
+        <!-- GREEN -->
         <div id="panel-green" class="panel green" style="display:none;">
           <div class="panel-title">
             <div class="panel-title-main">🟢 Conscious Living – Pembelajaran Reflektif</div>
@@ -1084,7 +1076,7 @@
   </div>
 
   <script>
-    // ====== HALAMAN PEMBUKA ======
+    // HALAMAN PEMBUKA
     const introScreen = document.getElementById("intro-screen");
     const mainApp = document.getElementById("main-app");
     const btnStart = document.getElementById("btn-start-program");
@@ -1097,7 +1089,7 @@
       });
     }
 
-    // ====== JAM DIGITAL ======
+    // JAM DIGITAL
     function updateClock() {
       const clock = document.getElementById("digital-clock");
       if (!clock) return;
@@ -1203,15 +1195,9 @@
     // === KIRIM JAWABAN KE GOOGLE SHEETS ===
     const SHEET_WEB_APP_URL =
       "https://script.google.com/macros/s/AKfycbzV_7H84FrKJvj73REM5pdu9ivVtI3m28rkcQ8oPy9qT4H_8yZ8J1ux82XRBPs7n9ap/exec";
-      // ganti kalau nanti URL deploy Apps Script berubah
+    // kalau kamu deploy lagi dan URL berubah, ganti baris di atas saja
 
     async function kirimKeSpreadsheet(mode) {
-      // cek sederhana: kalau kosong / placeholder, jangan kirim
-      if (!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL === "PASTE_URL_WEB_APP_KAMU_DI_SINI") {
-        alert("URL Web App untuk Google Sheets belum disetting.");
-        return;
-      }
-
       try {
         const inputs = document.querySelectorAll(
           '.reflection-input[data-mode="' + mode + '"]'
