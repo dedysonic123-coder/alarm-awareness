@@ -718,7 +718,6 @@
       justify-content: flex-end;
     }
 
-    /* DISCIPLINE QUOTE + MANFAAT */
     .discipline-quote {
       font-size: 0.9rem;
       font-style: italic;
@@ -764,7 +763,7 @@
       </div>
       <h1 class="intro-title">Alarm of Awareness</h1>
       <p class="intro-subtitle">
-        Sebelum kamu masuk ke tampilan alarm, luangkan sebentar untuk menyiapkan diri.  
+        Sebelum kamu masuk ke tampilan alarm, luangkan sebentar untuk menyiapkan diri.
         Program ini akan mengajakmu berhenti sejenak, mengenali kebiasaan, dan melatih kesadaran serta disiplin diri.
       </p>
       <ul class="intro-list">
@@ -786,7 +785,7 @@
       </div>
 
       <div class="intro-footer">
-        Media BK – <strong>Alarm of Awareness</strong> •  
+        Media BK – <strong>Alarm of Awareness</strong> •
         Dirancang untuk membantu siswa membangun kesadaran diri dan kedisiplinan belajar.
       </div>
     </div>
@@ -1023,7 +1022,6 @@
           </div>
         </div>
 
-        <!-- KUTIPAN + MANFAAT DISIPLIN -->
         <div class="summary-card" id="discipline-section">
           <p class="discipline-quote">
             “Disiplin adalah komitmen harian untuk menjadi versi diri yang lebih baik.”
@@ -1086,7 +1084,7 @@
   </div>
 
   <script>
-    // ====== LOGIKA HALAMAN PEMBUKA ======
+    // ====== HALAMAN PEMBUKA ======
     const introScreen = document.getElementById("intro-screen");
     const mainApp = document.getElementById("main-app");
     const btnStart = document.getElementById("btn-start-program");
@@ -1203,11 +1201,13 @@
     });
 
     // === KIRIM JAWABAN KE GOOGLE SHEETS ===
-    // Ganti string di bawah dengan URL Web App Google Apps Script kamu
-    const SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzV_7H84FrKJvj73REM5pdu9ivVtI3m28rkcQ8oPy9qT4H_8yZ8J1ux82XRBPs7n9ap/exec";
+    const SHEET_WEB_APP_URL =
+      "https://script.google.com/macros/s/AKfycbzV_7H84FrKJvj73REM5pdu9ivVtI3m28rkcQ8oPy9qT4H_8yZ8J1ux82XRBPs7n9ap/exec";
+      // ganti kalau nanti URL deploy Apps Script berubah
 
     async function kirimKeSpreadsheet(mode) {
-      if (!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL === "https://script.google.com/macros/s/AKfycbzV_7H84FrKJvj73REM5pdu9ivVtI3m28rkcQ8oPy9qT4H_8yZ8J1ux82XRBPs7n9ap/exec") {
+      // cek sederhana: kalau kosong / placeholder, jangan kirim
+      if (!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL === "PASTE_URL_WEB_APP_KAMU_DI_SINI") {
         alert("URL Web App untuk Google Sheets belum disetting.");
         return;
       }
@@ -1220,10 +1220,12 @@
           alert("Tidak ada jawaban untuk mode ini.");
           return;
         }
+
         const answers = {};
         inputs.forEach((input) => {
           answers[input.dataset.question || "0"] = input.value || "";
         });
+
         const lengkap = Object.values(answers).every(
           (v) => v.trim() !== ""
         );
@@ -1239,9 +1241,7 @@
           body: JSON.stringify({ mode, answers }),
         });
 
-        alert(
-          "Jawabanmu sudah DIKIRIM. Terima kasih sudah refleksi dengan jujur 🙏"
-        );
+        alert("Jawabanmu sudah DIKIRIM. Terima kasih sudah refleksi dengan jujur 🙏");
       } catch (err) {
         alert("Gagal mengirim: " + err);
       }
