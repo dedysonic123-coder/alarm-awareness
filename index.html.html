@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Media BK Digital – Alarm of Awareness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --accent: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-muted: #d1d5db;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    /* BACKGROUND FOTO PENUH */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("bg-alarm-kesadaran.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+
+    /* ====== HALAMAN PEMBUKA ====== */
+
+    .intro-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.2rem;
+    }
+
+    .intro-card {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.94);
+      border-radius: 1.5rem;
+      padding: 2rem 1.8rem 2.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 28px 60px rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(12px);
+    }
+
+    .intro-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.96);
+      margin-bottom: 0.9rem;
+    }
+
+    .intro-title {
+      font-size: clamp(1.9rem, 4vw, 2.3rem);
+      font-weight: 700;
+      line-height: 1.25;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
+      margin: 0 0 0.8rem;
+    }
+
+    .intro-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 1.2rem;
+    }
+
+    .intro-list {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0 0 1.4rem;
+      padding-left: 1.1rem;
+    }
+
+    .intro-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .intro-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    .intro-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .intro-btn-main {
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(22, 163, 74, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .intro-btn-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 38px rgba(22, 163, 74, 0.95);
+    }
+
+    .intro-btn-ghost {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: transform 0.1s ease, border 0.1s ease, color 0.1s ease;
+    }
+
+    .intro-btn-ghost:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .intro-footer {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .intro-footer strong {
+      color: #e5e7eb;
+    }
+
+    /* ====== HALAMAN UTAMA (PROGRAM) ====== */
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.8rem 1rem 3rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 3.2rem 1rem 3.4rem;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(15, 23, 42, 0.6);
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4.4vw, 2.7rem);
+      letter-spacing: 0.03em;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
+      max-width: 1000px;
+      margin: 3rem auto 0;
+    }
+
+    .header-subtitle {
+      max-width: 700px;
+      margin: 1.6rem auto 0;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-card {
+      margin-top: 1.5rem;
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 1.3rem;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 25px 50px rgba(15, 23, 42, 0.95);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.4rem;
+      align-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-text h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .hero-text p {
+      margin: 0.15rem 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-text small {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+        background 0.15s ease, border 0.15s ease;
+    }
+
+    .btn-main {
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(22, 163, 74, 0.8);
+    }
+
+    .btn-ghost {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .alarm-shell {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 1.3rem;
+      padding: 1.2rem 1.4rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.98);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .alarm-top-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .pill {
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .alarm-body {
+      background: #020617;
+      border-radius: 1rem;
+      padding: 1rem 1.1rem 1.3rem;
+      border: 1px solid rgba(15, 23, 42, 0.95);
+      box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.95);
+    }
+
+    .digital-clock {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 2.2rem;
+      color: #bbf7d0;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 0 10px rgba(74, 222, 128, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.15em;
+    }
+
+    .digital-clock .time-main {
+      letter-spacing: 0.18em;
+    }
+
+    .digital-clock .seconds {
+      font-size: 0.7em;
+      opacity: 0.9;
+      margin-left: -0.05em;
+    }
+
+    .digital-clock .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      0%,49% { opacity: 1; }
+      50%,100% { opacity: 0.15; }
+    }
+
+    .digital-subtext {
+      font-size: 0.8rem;
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .lights-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .light-btn {
+      width: 88px;
+      padding: 0.45rem 0.5rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(
+        circle at 30% 0,
+        rgba(255, 255, 255, 0.12),
+        transparent 45%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.1rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .light-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      margin-bottom: 0.15rem;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.9);
+    }
+
+    .light-red    { background: radial-gradient(circle at 30% 30%, #fecaca, #b91c1c); }
+    .light-yellow { background: radial-gradient(circle at 30% 30%, #fef9c3, #eab308); }
+    .light-green  { background: radial-gradient(circle at 30% 30%, #bbf7d0, #16a34a); }
+
+    .light-label {
+      font-weight: 600;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .light-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.9);
+      border-color: var(--accent);
+    }
+
+    .light-btn.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.9);
+    }
+
+    .hint-text {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.7rem;
+      opacity: 0.9;
+    }
+
+    .content-grid {
+      margin-top: 1.7rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .panel {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 1.1rem;
+      padding: 1.1rem 1.1rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(8px);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .panel-title-main {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .panel-tag {
+      font-size: 0.75rem;
+      padding: 0.1rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+      white-space: nowrap;
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .badge-color {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      padding: 0.12rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      margin-bottom: 0.55rem;
+    }
+
+    .color-dot-small {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .panel p {
+      margin: 0.2rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .panel-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.4rem;
+      min-height: 180px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .reflection-block {
+      margin-top: 0.7rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.7);
+    }
+
+    .reflection-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .question-list {
+      margin: 0.35rem 0 0.6rem;
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .question-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      border-radius: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.97);
+      color: var(--text-main);
+      padding: 0.5rem 0.6rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    textarea::placeholder {
+      color: rgba(148, 163, 184, 0.9);
+      font-size: 0.82rem;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.9);
+    }
+
+    .btn-back {
+      margin-top: 0.7rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-back:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .panel.red {
+      background: linear-gradient(
+        145deg,
+        rgba(127, 29, 29, 0.9),
+        rgba(15, 23, 42, 0.98)
+      );
+      border-color: rgba(248, 113, 113, 0.9);
+    }
+
+    .panel.yellow {
+      background: linear-gradient(
+        145deg,
+        rgba(133, 77, 14, 0.9),
+        rgba(15, 23, 42, 0.98)
+      );
+      border-color: rgba(250, 204, 21, 0.9);
+    }
+
+    .panel.green {
+      background: linear-gradient(
+        145deg,
+        rgba(22, 101, 52, 0.92),
+        rgba(15, 23, 42, 0.98)
+      );
+      border-color: rgba(74, 222, 128, 0.95);
+    }
+
+    .summary-card {
+      margin-top: 0.5rem;
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.85);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(8px);
+    }
+
+    .summary-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .quote-line {
+      font-size: 0.95rem;
+      margin: 0.28rem 0;
+    }
+
+    .summary-footer {
+      margin-top: 0.65rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .bk-table {
+      margin-top: 0.7rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      overflow: hidden;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(8px);
+    }
+
+    .bk-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .bk-table th,
+    .bk-table td {
+      padding: 0.45rem 0.6rem;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+    }
+
+    .bk-table th {
+      text-align: left;
+      background: rgba(15, 23, 42, 1);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .bk-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .bk-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.05rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-main);
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    footer strong {
+      color: #e5e7eb;
+    }
+
+    .final-line {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #fef9c3;
+    }
+
+    .wizard-nav {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .wizard-nav .step-label {
+      color: var(--text-muted);
+    }
+
+    .wizard-buttons {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* DISCIPLINE QUOTE + MANFAAT */
+    .discipline-quote {
+      font-size: 0.9rem;
+      font-style: italic;
+      text-align: center;
+      color: #fef9c3;
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .discipline-benefits-title {
+      margin-top: 0.4rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #fde68a;
+    }
+
+    .discipline-benefits {
+      margin: 0.35rem 0 0;
+      padding-left: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .discipline-benefits li {
+      margin-bottom: 0.18rem;
+    }
+
+    /* Sembunyikan dulu app utama */
+    #main-app {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== HALAMAN PEMBUKA ========== -->
+  <section class="intro-screen" id="intro-screen">
+    <div class="intro-card">
+      <div class="intro-tagline">
+        <span>🧠 Media BK Digital Interaktif</span>
+        <span>•</span>
+        <span>Program Refleksi Siswa</span>
+      </div>
+      <h1 class="intro-title">Alarm of Awareness</h1>
+      <p class="intro-subtitle">
+        Sebelum kamu masuk ke tampilan alarm, luangkan sebentar untuk menyiapkan diri.  
+        Program ini akan mengajakmu berhenti sejenak, mengenali kebiasaan, dan melatih kesadaran serta disiplin diri.
+      </p>
+      <ul class="intro-list">
+        <li>Gunakan media ini dengan tenang, tanpa terburu-buru.</li>
+        <li>Jawab pertanyaan refleksi dengan jujur sesuai pengalamanmu.</li>
+        <li>Tidak ada jawaban benar atau salah, yang penting adalah kejujuranmu.</li>
+      </ul>
+      <p class="intro-note">
+        Saat kamu siap, klik tombol di bawah untuk menyalakan <strong>Alarm Kesadaran</strong>.
+      </p>
+
+      <div class="intro-actions">
+        <button class="intro-btn-main" id="btn-start-program">
+          ⏰ Mulai Alarm Kesadaran
+        </button>
+        <button class="intro-btn-ghost" type="button">
+          ℹ️ Dibimbing oleh Guru BK / Konselor
+        </button>
+      </div>
+
+      <div class="intro-footer">
+        Media BK – <strong>Alarm of Awareness</strong> •  
+        Dirancang untuk membantu siswa membangun kesadaran diri dan kedisiplinan belajar.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HALAMAN UTAMA PROGRAM ========== -->
+  <div class="wrapper" id="main-app">
+    <header>
+      <div class="tagline">
+        <span>🧠 Media BK Digital Interaktif</span>
+        <span>•</span>
+        <span>Alarm of Awareness</span>
+      </div>
+      <h1>Kalau alarm bisa bangunin badan siapa yang bangunin kesadaran?</h1>
+      <p class="header-subtitle">
+        Mengajak siswa berhenti sejenak, menyalakan kesadaran, dan memilih cara hidup yang lebih sadar.
+      </p>
+    </header>
+
+    <!-- HERO + ALARM -->
+    <section class="hero-card">
+      <div class="hero-text">
+        <h2>Alarm Kesadaran • Tampilan Utama</h2>
+        <p>
+          Gunakan tiga warna alarm untuk mengajak siswa refleksi: hidup autopilot, mulai sadar, hingga hidup dengan tujuan.
+        </p>
+        <p>
+          <small>
+            Klik <strong>Mulai Refleksi</strong> lalu pilih warna yang paling menggambarkan keadaanmu hari ini.
+          </small>
+        </p>
+        <div class="hero-actions">
+          <button class="btn-main" id="btn-scroll-alarm">⏰ Mulai Refleksi</button>
+          <button class="btn-ghost" id="btn-scroll-bk">📚 Lihat Aspek BK</button>
+        </div>
+      </div>
+
+      <div class="alarm-shell" id="alarm-section">
+        <div class="alarm-top-label">
+          <span>ALARM OF AWARENESS</span>
+          <span class="pill">🔔 Mode Refleksi</span>
+        </div>
+        <div class="alarm-body">
+          <div class="digital-clock" id="digital-clock">
+            <span class="time-main">00<span class="blink">:</span>00</span>
+            <span class="seconds">00</span>
+          </div>
+          <div class="digital-subtext">
+            Bangunkan bukan cuma badanmu, tapi juga kesadaranmu.
+          </div>
+
+          <div class="lights-row">
+            <button class="light-btn" data-mode="red" id="btn-red">
+              <div class="light-dot light-red"></div>
+              <div class="light-label">Autopilot</div>
+              <span>Hidup tanpa arah</span>
+            </button>
+            <button class="light-btn" data-mode="yellow" id="btn-yellow">
+              <div class="light-dot light-yellow"></div>
+              <div class="light-label">Awareness</div>
+              <span>Titik mulai sadar</span>
+            </button>
+            <button class="light-btn" data-mode="green" id="btn-green">
+              <div class="light-dot light-green"></div>
+              <div class="light-label">Conscious</div>
+              <span>Hidup dengan tujuan</span>
+            </button>
+          </div>
+
+          <div class="hint-text">
+            Klik salah satu warna untuk membuka refleksi. Kamu bisa bolak-balik warna sesuka hati.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="content-grid" id="content-grid">
+      <article class="panel" id="panel-dynamic">
+        <div class="panel-placeholder" id="panel-placeholder">
+          <span>👆</span>
+          <div>
+            Pilih dulu salah satu warna di <strong>Alarm Kesadaran</strong> di atas.
+          </div>
+          <div>
+            Kamu sedang ada di mode yang mana: 🔴 autopilot, 🟡 mulai sadar, atau 🟢 hidup dengan tujuan?
+          </div>
+        </div>
+
+        <!-- 🔴 RED PANEL – SELF-AWARENESS (GOLEMAN) -->
+        <div id="panel-red" class="panel red" style="display:none;">
+          <div class="panel-title">
+            <div class="panel-title-main">🔴 Autopilot Mode – Self-Awareness</div>
+            <div class="panel-tag">Daniel Goleman</div>
+          </div>
+          <div class="badge-color">
+            <div class="color-dot-small" style="background:#ef4444;"></div>
+            <span>Latar: merah lembut • Menyadari diri di tengah konflik & emosi</span>
+          </div>
+          <p>
+            Di mode ini, kamu diajak melihat kembali bagaimana kesadaran diri membantumu memahami konflik, keputusan, dan hal-hal yang sering
+            mengganggu fokusmu.
+          </p>
+
+          <div class="reflection-block" data-mode-step="red">
+            <div class="reflection-label">❓ Pertanyaan Refleksi – Self-Awareness (Goleman)</div>
+            <ol class="question-list">
+              <li>Apa peran kesadaran diri dalam mengatasi konflik dengan teman atau keluarga?</li>
+              <li>Ceritakan saat kamu merasa sangat sadar tentang sebuah keputusan yang kamu buat, bagaimana itu memengaruhi hasilnya?</li>
+              <li>Apa saja hal yang biasanya mengganggu kesadaran dirimu dan bagaimana kamu mengatasinya?</li>
+              <li>Bagaimana kamu bisa melatih diri supaya lebih peka terhadap perasaan dan pikiranmu sendiri?</li>
+            </ol>
+            <textarea
+              class="reflection-input"
+              data-mode="red"
+              data-question="1"
+              placeholder="Jawab keempat pertanyaan di atas. Kamu boleh menulis dalam bentuk cerita atau poin-poin."
+            ></textarea>
+          </div>
+
+          <div class="wizard-nav" data-mode="red">
+            <div class="step-label" data-step-label>Soal 1 dari 1</div>
+            <div class="wizard-buttons">
+              <button class="btn-main" type="button" data-submit>
+                Selesai &amp; Kirim
+              </button>
+            </div>
+          </div>
+
+          <button class="btn-back" data-back>← Kembali ke Alarm Utama</button>
+        </div>
+
+        <!-- 🟡 YELLOW PANEL – REGULASI DIRI & KEDISIPLINAN (ZIMMERMAN) -->
+        <div id="panel-yellow" class="panel yellow" style="display:none;">
+          <div class="panel-title">
+            <div class="panel-title-main">🟡 Awareness Wake-Up – Regulasi Diri & Kedisiplinan</div>
+            <div class="panel-tag">Zimmerman</div>
+          </div>
+          <div class="badge-color">
+            <div class="color-dot-small" style="background:#facc15;"></div>
+            <span>Latar: kuning hangat • Mengatur diri & waktu dengan sadar</span>
+          </div>
+          <p>
+            Di mode ini, kamu diajak melihat bagaimana kamu mengatur jadwal, mengontrol diri, dan menjaga disiplin supaya tetap selaras dengan tujuanmu.
+          </p>
+
+          <div class="reflection-block" data-mode-step="yellow">
+            <div class="reflection-label">❓ Pertanyaan Refleksi – Regulasi Diri dan Kedisiplinan (Zimmerman)</div>
+            <ol class="question-list">
+              <li>Bagaimana kamu mengatur jadwal harian agar tetap konsisten dengan tujuan yang kamu inginkan?</li>
+              <li>Jelaskan pengalaman saat kamu gagal mengontrol diri, apa pelajaran yang kamu ambil dari situ?</li>
+              <li>Bagaimana cara kamu mengukur keberhasilan dalam mengelola disiplin diri?</li>
+              <li>Apa cara terbaik menurutmu untuk menghadapi godaan yang mengganggu fokus belajar atau kegiatan penting?</li>
+            </ol>
+            <textarea
+              class="reflection-input"
+              data-mode="yellow"
+              data-question="1"
+              placeholder="Tuliskan refleksimu terkait cara kamu mengatur diri dan menjaga disiplin."
+            ></textarea>
+          </div>
+
+          <div class="wizard-nav" data-mode="yellow">
+            <div class="step-label" data-step-label>Soal 1 dari 1</div>
+            <div class="wizard-buttons">
+              <button class="btn-main" type="button" data-submit>
+                Selesai &amp; Kirim
+              </button>
+            </div>
+          </div>
+
+          <button class="btn-back" data-back>← Kembali ke Alarm Utama</button>
+        </div>
+
+        <!-- 🟢 GREEN PANEL – TEORI PEMBELAJARAN REFLEKTIF (KOLB) -->
+        <div id="panel-green" class="panel green" style="display:none;">
+          <div class="panel-title">
+            <div class="panel-title-main">🟢 Conscious Living – Pembelajaran Reflektif</div>
+            <div class="panel-tag">Kolb</div>
+          </div>
+          <div class="badge-color">
+            <div class="color-dot-small" style="background:#22c55e;"></div>
+            <span>Latar: hijau pastel • Menghubungkan pengalaman & tujuan hidup</span>
+          </div>
+          <p>
+            Di mode ini, kamu diajak menghubungkan pengalaman hidup dengan tujuan jangka panjang lewat proses refleksi yang terus dilatih.
+          </p>
+
+          <div class="reflection-block" data-mode-step="green">
+            <div class="reflection-label">❓ Pertanyaan Refleksi – Teori Pembelajaran Reflektif (Kolb)</div>
+            <ol class="question-list">
+              <li>Bagaimana proses refleksi membantumu memahami hubungan antara pengalaman dan tujuan hidup?</li>
+              <li>Apa yang biasanya membuat kamu sulit untuk merefleksikan pengalaman secara jujur?</li>
+              <li>Ceritakan pengalaman saat refleksi membawamu pada perubahan positif.</li>
+              <li>Bagaimana kamu bisa mengintegrasikan refleksi ke dalam rutinitas harian agar menjadi kebiasaan?</li>
+            </ol>
+            <textarea
+              class="reflection-input"
+              data-mode="green"
+              data-question="1"
+              placeholder="Jawab keempat pertanyaan di atas untuk melihat bagaimana refleksi bekerja dalam hidupmu."
+            ></textarea>
+          </div>
+
+          <div class="wizard-nav" data-mode="green">
+            <div class="step-label" data-step-label>Soal 1 dari 1</div>
+            <div class="wizard-buttons">
+              <button class="btn-main" type="button" data-submit>
+                Selesai &amp; Kirim
+              </button>
+            </div>
+          </div>
+
+          <button class="btn-back" data-back>← Kembali ke Alarm Utama</button>
+        </div>
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="summary-card" id="summary-card">
+          <div class="summary-title">🔔 Penutup Reflektif</div>
+          <p class="quote-line">
+            ⏰ Kalau alarm bisa bangunin badan siapa yang bangunin kesadaran?
+          </p>
+          <p class="quote-line">
+            🌿 Bangun bukan cuma dari tidur, tapi juga dari kebiasaan lama yang menidurkan potensimu.
+          </p>
+          <p class="quote-line">
+            ✨ Kesadaran adalah alarm jiwa — dengarkan sebelum terlambat.
+          </p>
+          <div class="summary-footer">
+            Gunakan media ini berulang kali. Setiap klik warna bisa memunculkan
+            jawaban dan refleksi yang berbeda, tergantung keadaanmu hari ini.
+          </div>
+        </div>
+
+        <!-- KUTIPAN + MANFAAT DISIPLIN -->
+        <div class="summary-card" id="discipline-section">
+          <p class="discipline-quote">
+            “Disiplin adalah komitmen harian untuk menjadi versi diri yang lebih baik.”
+          </p>
+          <div class="discipline-benefits-title">
+            Manfaat Disiplin bagi Kehidupan Sehari-Hari:
+          </div>
+          <ul class="discipline-benefits">
+            <li>Menumbuhkan rasa percaya diri.</li>
+            <li>Membuat hidup lebih terkontrol.</li>
+            <li>Membangun kebiasaan positif.</li>
+            <li>Melatih tanggung jawab pribadi.</li>
+            <li>Meningkatkan fokus dan konsentrasi.</li>
+            <li>Membentuk kepribadian yang kuat.</li>
+          </ul>
+        </div>
+
+        <div class="bk-table" id="bk-section">
+          <table>
+            <thead>
+              <tr>
+                <th>Bidang</th>
+                <th>Aspek</th>
+                <th>Tujuan BK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="bk-pill">Pribadi</span></td>
+                <td>Kesadaran diri</td>
+                <td>Mengenali pola, nilai, dan kebiasaan pribadi.</td>
+              </tr>
+              <tr>
+                <td><span class="bk-pill">Sosial</span></td>
+                <td>Tanggung jawab sosial</td>
+                <td>Menyadari bahwa sikap dan pilihan berpengaruh pada orang lain.</td>
+              </tr>
+              <tr>
+                <td><span class="bk-pill">Belajar</span></td>
+                <td>Kedisiplinan</td>
+                <td>Membangun rutinitas belajar yang lahir dari kesadaran, bukan tekanan.</td>
+              </tr>
+              <tr>
+                <td><span class="bk-pill">Karier</span></td>
+                <td>Self-control</td>
+                <td>Mengarahkan energi dan waktu menuju tujuan jangka panjang.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <div>Media BK Interaktif – <strong>Alarm of Awareness</strong></div>
+      <div class="final-line">
+        Bangun kesadaranmu sebelum waktu memaksamu bangun.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ====== LOGIKA HALAMAN PEMBUKA ======
+    const introScreen = document.getElementById("intro-screen");
+    const mainApp = document.getElementById("main-app");
+    const btnStart = document.getElementById("btn-start-program");
+
+    if (btnStart && introScreen && mainApp) {
+      btnStart.addEventListener("click", () => {
+        introScreen.style.display = "none";
+        mainApp.style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // ====== JAM DIGITAL ======
+    function updateClock() {
+      const clock = document.getElementById("digital-clock");
+      if (!clock) return;
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+      clock.innerHTML = `
+        <span class="time-main">${h}<span class="blink">:</span>${m}</span>
+        <span class="seconds">${s}</span>
+      `;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // TOMBOL SCROLL
+    document.getElementById("btn-scroll-alarm").addEventListener("click", () => {
+      document
+        .getElementById("alarm-section")
+        .scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("btn-scroll-bk").addEventListener("click", () => {
+      document
+        .getElementById("bk-section")
+        .scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    // MODE PANEL
+    const modeButtons = document.querySelectorAll(".light-btn");
+    const panelPlaceholder = document.getElementById("panel-placeholder");
+    const panelRed = document.getElementById("panel-red");
+    const panelYellow = document.getElementById("panel-yellow");
+    const panelGreen = document.getElementById("panel-green");
+    const allPanels = [panelRed, panelYellow, panelGreen];
+
+    const STORAGE_KEY = "alarm_of_awareness_responses_v1";
+
+    function loadResponses() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch {
+        return {};
+      }
+    }
+
+    let responses = loadResponses();
+
+    function saveResponses() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
+      } catch {}
+    }
+
+    const reflectionInputs = document.querySelectorAll(".reflection-input");
+    reflectionInputs.forEach((input) => {
+      const mode = input.dataset.mode;
+      const q = input.dataset.question;
+      const key = mode + "_" + q;
+      if (responses[key]) input.value = responses[key];
+      input.addEventListener("input", () => {
+        responses[key] = input.value;
+        saveResponses();
+      });
+    });
+
+    function setMode(mode) {
+      panelPlaceholder.style.display = "none";
+      allPanels.forEach((p) => (p.style.display = "none"));
+      modeButtons.forEach((btn) => btn.classList.remove("active"));
+
+      if (mode === "red") {
+        panelRed.style.display = "block";
+        document.getElementById("btn-red").classList.add("active");
+      } else if (mode === "yellow") {
+        panelYellow.style.display = "block";
+        document.getElementById("btn-yellow").classList.add("active");
+      } else if (mode === "green") {
+        panelGreen.style.display = "block";
+        document.getElementById("btn-green").classList.add("active");
+      }
+    }
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const mode = btn.getAttribute("data-mode");
+        setMode(mode);
+      });
+    });
+
+    document.querySelectorAll("[data-back]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        allPanels.forEach((p) => (p.style.display = "none"));
+        modeButtons.forEach((b) => b.classList.remove("active"));
+        panelPlaceholder.style.display = "flex";
+        document
+          .getElementById("alarm-section")
+          .scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+
+    // === KIRIM JAWABAN KE GOOGLE SHEETS ===
+    // Ganti string di bawah dengan URL Web App Google Apps Script kamu
+    const SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyGSBHIUFC0YAosg_nKwqDnUTGodyXrQLUKOJodFiRC4FF6NnQDTzzWD8NIFRHG22b6/exec";
+
+    async function kirimKeSpreadsheet(mode) {
+      if (!SHEET_WEB_APP_URL || SHEET_WEB_APP_URL === "PASTE_URL_WEB_APP_KAMU_DI_SINI") {
+        alert("URL Web App untuk Google Sheets belum disetting.");
+        return;
+      }
+
+      try {
+        const inputs = document.querySelectorAll(
+          '.reflection-input[data-mode="' + mode + '"]'
+        );
+        if (!inputs.length) {
+          alert("Tidak ada jawaban untuk mode ini.");
+          return;
+        }
+        const answers = {};
+        inputs.forEach((input) => {
+          answers[input.dataset.question || "0"] = input.value || "";
+        });
+        const lengkap = Object.values(answers).every(
+          (v) => v.trim() !== ""
+        );
+        if (!lengkap) {
+          alert("Lengkapi dulu semua jawaban di kotak refleksi ya 😊");
+          return;
+        }
+
+        await fetch(SHEET_WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mode, answers }),
+        });
+
+        alert(
+          "Jawabanmu sudah DIKIRIM. Terima kasih sudah refleksi dengan jujur 🙏"
+        );
+      } catch (err) {
+        alert("Gagal mengirim: " + err);
+      }
+    }
+
+    function initStepper(mode) {
+      const nav = document.querySelector(
+        '.wizard-nav[data-mode="' + mode + '"]'
+      );
+      if (!nav) return;
+
+      const btnSubmit = nav.querySelector("[data-submit]");
+      const label = nav.querySelector("[data-step-label]");
+
+      if (label) label.textContent = "Soal 1 dari 1";
+      if (btnSubmit) {
+        btnSubmit.addEventListener("click", () => {
+          kirimKeSpreadsheet(mode);
+        });
+      }
+    }
+
+    initStepper("red");
+    initStepper("yellow");
+    initStepper("green");
+  </script>
+</body>
+</html>
